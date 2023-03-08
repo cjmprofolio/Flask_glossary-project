@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Myapp</title>
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <main class="col-8 px-md-4">
+        <div class="d-flex justify-content-between flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Update the Word</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a style= "text-decoration: none" href="{{ url_for('index') }}">
+                            <button type="button" class="btn btn-sm btn-outline-danger">Back</button>
+                        </a>
+                    </div>
+                </div>
+        </div>
+    
+        <form action="/update/{{word.id}}" method="POST">
+            <div class="form-group">
+              <label class="h5" for="word">Word</label>
+              <input class="form-control" id="word" name="word" value="{{ word.word }}" required>
+              <small id="word" class="form-text text-muted">Practice makes Perfect.</small>
+            </div>
+            <br>
+            <div class="form-group">
+              <label class="h5" for="definition">Definition</label>
+              <input class="form-control" id="definition" name="definition" value="{{ word.definition }}" required>
+              <small id="source" class="form-text text-muted">Please enter definition in english</small>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="h5" for="source">Source</label>
+                <input class="form-control" id="source" name="source" value="{{ word.source }}" required>
+                <small id="source" class="form-text text-muted">Provide reference url.</small>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+    </main>
+</div>
+{% endblock %}

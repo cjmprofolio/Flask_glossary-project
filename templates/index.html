@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Myapp</title>
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <main class="col-8 px-md-4">
+        <div class="d-flex justify-content-between flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">WordCard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a style= "text-decoration: none" href="{{url_for('addWord')}}">
+                            <button type="button" class="btn btn-sm btn-outline-primary">Add</button> </a>
+                        <a style= "text-decoration: none" href="{{ url_for('delete')}}">
+                        <button form="allwords" type="submit" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                    </div>
+                </div>
+        </div>
+        <form action="/delete" method="POST" id="allwords">
+            <div class="table-responsive">
+                <table class="table table-striped table-sm table-bordered">
+                    <thead>
+                        <tr class="text-sm-center">
+                            <th class="col-1">#</th>
+                            <th class="col-md-2">Word</th>
+                            <th class="col">Definition</th>
+                            <th class="col-1">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for word in words %}
+                        <tr>
+                            <td align="center"><input class="form-check checkbox-xl"  type="checkbox" name="deleteclick" value="{{ word.id|safe }}"></td>
+                            <td>{{ word.word|safe }}</td>
+                            <td>{{ word.definition|safe }}</td>
+                            <td><a href="/update/{{ word.id }}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Update</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </main>
+</div>
+{% endblock %}
