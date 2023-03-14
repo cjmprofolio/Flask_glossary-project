@@ -3,7 +3,7 @@ title: Flask project
 description: "Using Flask to build a glossary web api."
 
 # Build settings
-theme: architect
+theme: minima
 plugins:
 - jekyll-remote-theme
 markdown: kramdown
